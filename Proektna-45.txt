@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cstring>
+#include <cstdio>
+
+using namespace std;
+
+int numberOfDigits;
+
+char* encoder(char* stringToEncode){
+for(int i=0;i<strlen(stringToEncode);i++){
+stringToEncode[i]+=numberOfDigits;
+}
+return stringToEncode;
+}
+
+char* decoder(char* stringToDecode){
+for(int i=0;i<strlen(stringToDecode);i++){
+stringToDecode[i]-=numberOfDigits;
+}
+return stringToDecode;
+}
+
+int main()
+{
+char str[400];
+int number;
+
+gets(str);
+cin>>number;
+
+
+int n = number;
+while(n>0){
+numberOfDigits++;
+n/=10;
+}
+
+if(numberOfDigits>10) return -1;
+
+char* result = encoder(str);
+cout<<"The original string is encoded in the form: "<<result<<endl;
+
+result = decoder(result);
+cout<<"The encoded string is decoded back to the initial form: "<<result<<endl;
+
+return 0;
+}
