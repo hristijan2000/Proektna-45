@@ -5,44 +5,47 @@
 
 using namespace std;
 
-int numberOfDigits;
+int numberOfDigits;//globalna promenliva za brojot na cifri koj se presmetva so pomosh na dadeniot while ciklus
 
+//funkcija za kodiranje na stringot , sekoj karakter ja menuva pozicijata za brojot na cifri od vneseniot broj
 char* encoder(char* stringToEncode){
-for(int i=0;i<strlen(stringToEncode);i++){
-stringToEncode[i]+=numberOfDigits;
+for(int i=0;i<strlen(stringToEncode);i++){ //for ciklusot ja izminuva dolzinata na stringot i sekoja cifra ja pomestuva za n-mesta
+stringToEncode[i]+=numberOfDigits;//ja menuva pozicijata na karakter za n-mesta
 }
-return stringToEncode;
+return stringToEncode;//na izlez vrakja string
 }
 
+//funkcija koj shto ja vrakja prvobitnata vrednost na stringot odnosno go dekodira stringot
 char* decoder(char* stringToDecode){
-for(int i=0;i<strlen(stringToDecode);i++){
-stringToDecode[i]-=numberOfDigits;
+for(int i=0;i<strlen(stringToDecode);i++){ //for ciklusot ja izminuva dolzinata na stringot i sekoja cifra ja vrakja na prvobitnata pozicija 
+stringToDecode[i]-=numberOfDigits;//ja vrakja pozicijata na karakter za n-mesta
 }
-return stringToDecode;
+return stringToDecode; //na izlez vrakja string
 }
 
 int main()
 {
-char str[400];
-int number;
+char str[400];// deklarianje na string so dolzina 400 karakteri
+int number;//deklaracija na celbroj
 
-gets(str);
-cin>>number;
+gets(str);//go zema stringot i go izminuva
+cin>>number; //vnesuvanje na cel broj
 
 
-int n = number;
+int n = number;// deklaracija i inicializacija na privremena promenliva od celobroen tip
+//Ciklus vo koj shto ke se brojat karakterite od stringot se dodeka vnesuvame vrednost pogolema od 0
 while(n>0){
-numberOfDigits++;
-n/=10;
+numberOfDigits++;//inkrementiranje na brojot na cifri
+n/=10;//otkinuvanje na eden po eden karakter od brojot
 }
 
-if(numberOfDigits>10) return -1;
+if(numberOfDigits>10) return -1;//ako brojot ima dolzina so povekje od 10 cifri da ne gi racuna ponatamu cifrite nad 10-ka vrednost
 
-char* result = encoder(str);
-cout<<"The original string is encoded in the form: "<<result<<endl;
+char* result = encoder(str); //deklariranje i inicializacija na promenliva koj shto na izlez treba da ja ispecati funkcijtat encoder()
+cout<<"The original string is encoded in the form: "<<result<<endl;//pecatenje na string
 
-result = decoder(result);
-cout<<"The encoded string is decoded back to the initial form: "<<result<<endl;
+result = decoder(result); //promenlivata rezult ja zema vrednosta od funkcijata decoder
+cout<<"The encoded string is decoded back to the initial form: "<<result<<endl;//pecatenje na string
 
 return 0;
 }
